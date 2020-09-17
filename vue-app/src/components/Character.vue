@@ -5,7 +5,6 @@
     <h2 v-if="character">Hit Points: {{ character.hitPoints }}</h2>
     <h2 v-if="character">Luck: {{ character.luck }}</h2>
     <h2 v-if="character">Wealth: {{ character.wealth }}</h2>
-    
   </div>
 </template>
 
