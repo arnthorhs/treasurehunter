@@ -21,5 +21,10 @@ async function getCharacter(): Promise<CharacterModel> {
     console.log(resp);
     return resp.data;
 }
-
-export { CharacterModel, getCharacter }
+async function getShop(): Promise<Equipment[]> {
+    const url = 'http://localhost:5000/equipment';
+    const resp = await axios.get<Equipment[]>(url);
+    console.log(resp);
+    return resp.data;
+}
+export { CharacterModel, Equipment, getCharacter, getShop}
