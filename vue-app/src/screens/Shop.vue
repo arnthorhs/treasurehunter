@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Equipment, getShop } from '../apiRequests';
-import EquipmentItem from './EquipmentItem.vue';
+import EquipmentItem from '../components/EquipmentItem.vue';
 
 @Component({
   components: {

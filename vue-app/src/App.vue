@@ -2,7 +2,7 @@
   <div id="app">
     <ul id="nav-bar">
       <li><router-link to="/" id="router-link"><b>Home</b></router-link></li>
-      <li><router-link to="/character" id="router-link">Charachter</router-link></li>
+      <li><router-link to="/character" id="router-link">Character</router-link></li>
       <li><router-link to="/shop" id="router-link">Shop</router-link></li>
     </ul>
     <router-view></router-view>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Character from './components/Character.vue';
+import Character from './screens/Character.vue';
 
 @Component({
   components: {

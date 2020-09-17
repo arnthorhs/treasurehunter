@@ -1,6 +1,6 @@
-import Home from './components/Home.vue';
-import Shop from './components/Shop.vue';
-import Character from './components/Character.vue';
+import Home from './screens/Home.vue';
+import Shop from './screens/Shop.vue';
+import Character from './screens/Character.vue';
 import NotFound from './components/NotFound.vue';
 
 export default [
