@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>{{title}}</h1>
-    <EquipmentItem v-for="(eq) in equipment" :key="eq.id" :equipment='eq' />
+    <div id="equipmentList">
+    <EquipmentItem v-for="(eq) in equipment" :key="eq.id" :equipment='eq' id="item"/>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -28,3 +30,16 @@ export default class Shop extends Vue {
   }
 }
 </script>
+<style scoped>
+#equipmentList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#item {
+  flex: 0.2;
+  margin: 1em;
+  min-width: 10em;
+}
+</style>

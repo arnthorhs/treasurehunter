@@ -1,10 +1,10 @@
 <template>
-  <div >
-    <h2>{{equipment.name}}</h2>
-    <h2>Type: {{equipment.type}}</h2>
-    <h2>HP modifier: {{equipment.hpModifier}}</h2>
-    <h2>Luck modifier: {{equipment.luckModifier}}</h2>
-    <h2>Cost: {{equipment.value}}</h2>
+  <div id="equipmentItem" v-bind:class="equipment.type">
+    <h3>{{equipment.name}}</h3>
+    <h4>Type: {{equipment.type}}</h4>
+    <h4>HP modifier: {{equipment.hpModifier}}</h4>
+    <h4>Luck modifier: {{equipment.luckModifier}}</h4>
+    <h4>Cost: {{equipment.value}}</h4>
   </div>
 </template>
 <script lang="ts">
@@ -17,3 +17,14 @@ export default  class Shop extends Vue{
 
 }
 </script>
+<style scoped>
+.Armor{
+  background-color: lightsalmon;
+}
+.Weapon{
+  background-color:lightcyan;
+}
+.Trinket{
+  background-color:lightseagreen;
+}
+</style>>
