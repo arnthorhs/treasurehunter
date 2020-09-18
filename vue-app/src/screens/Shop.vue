@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div v-if="equipment!=undefined">
     <h1>Shop</h1>
     <p>Coins left to spend: {{wealthLeft}}</p>
     <div id="equipmentList">
       <EquipmentItem id="item" v-for="(eq) in equipment" :key="eq.id" :equipment='eq' @addToCart='addToCart($event)' />
     </div>
     <Cart :cart='cart' :cartTotal='cartTotal' :character='character' @checkout='checkout($event)'/>
+  </div>
+  <div v-else>
+    <h1>Sorry something went wrong</h1>
   </div>
 </template>
 <script lang="ts">

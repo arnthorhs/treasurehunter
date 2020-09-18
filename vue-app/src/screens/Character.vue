@@ -1,5 +1,6 @@
 <template>
-  <div class="character">
+<div>
+  <div v-if="character!=undefined" class="character">
     <h1>Character</h1>
     <h2 v-if="character">Name: {{ character.name }}</h2>
     <h2 v-if="character">Hit Points: {{ character.hitPoints }}</h2>
@@ -11,6 +12,8 @@
     </div>
     <div v-else id="noEquipment"><p>You don't have any equipment, It is dangerous to go on treasure hunts without any equipments!</p></div>
   </div>
+  <div v-else><h1>Sorry something went wrong</h1></div>
+</div>
 </template>
 
 <script lang="ts">
