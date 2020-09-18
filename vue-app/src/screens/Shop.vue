@@ -4,7 +4,7 @@
     <div id="equipmentList">
       <EquipmentItem id="item" v-for="(eq) in equipment" :key="eq.id" :equipment='eq' @addToCart='addToCart($event)' />
     </div>
-    <Cart :cart='cart' :cartTotal='cartTotal'/>
+    <Cart :cart='cart' :cartTotal='cartTotal' :character='character'/>
   </div>
 </template>
 <script lang="ts">
@@ -39,14 +39,22 @@ export default class Shop extends Vue {
   addToCart(equipmentToCart: Equipment){
     this.updateWealthLeft()
     console.log(this.wealthLeft)
-    if(equipmentToCart.value < this.wealthLeft){
+    if(this.checkIfAlreadyInCart(equipmentToCart)) {
+      alert("you have already bought this item")
+    }
+    else if(equipmentToCart.value <= this.wealthLeft){
       this.cart.push(equipmentToCart)
     }
+    
     else {
       alert("Sorry you cant afford this")
     }
   }
-
+  checkIfAlreadyInCart(equipmentToCart: Equipment){
+    const found = this.cart.some(e => e.id==equipmentToCart.id);
+    console.log("found: ", found)
+    return found;
+  }
   @Watch('cart')
   onCarthanged() {
     let sum = 0;

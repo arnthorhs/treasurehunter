@@ -1,11 +1,13 @@
 <template>
-  <div id="equipmentItem" v-bind:class="equipment.type.toLowerCase()" v-on:click="handleSubmit()">
+  <div id="equipmentItem" v-bind:class="equipment.type.toLowerCase()">
     <h3>{{equipment.name}}</h3>
-    <h4>Type: {{equipment.type}}</h4>
-    <h4>HP modifier: {{equipment.hpModifier}}</h4>
-    <h4>Luck modifier: {{equipment.luckModifier}}</h4>
-    <h4>Cost: {{equipment.value}}</h4>
+    <p>Type: {{equipment.type}}</p>
+    <p>HP modifier: {{equipment.hpModifier}}</p>
+    <p>Luck modifier: {{equipment.luckModifier}}</p>
+    <p>Cost: {{equipment.value}}</p>
+    <button v-on:click="handleSubmit()" id="button"><p id="buttonText">Add to cart</p></button>
   </div>
+  
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
@@ -30,7 +32,5 @@ export default  class Shop extends Vue{
 .trinket{
   background-color:lightseagreen;
 }
-button {
-  margin: 0.5em
-}
+
 </style>>

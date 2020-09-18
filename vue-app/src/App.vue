@@ -55,4 +55,13 @@ li #router-link {
 li #router-link:hover {
   background-color: #111;
 }
+#button {
+  align-self: flex-end;
+  margin: 0.5em;
+  background-color:midnightblue;
+  border: none;
+}
+#buttonText {
+  color: whitesmoke
+}
 </style>
