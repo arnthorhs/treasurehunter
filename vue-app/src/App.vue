@@ -44,8 +44,6 @@ li #router-link {
   padding: 14px 16px;
   text-decoration: none;
 }
-
-/* Change the link color to #111 (black) on hover */
 li #router-link:hover {
   background-color: #111;
 }
@@ -57,5 +55,14 @@ li #router-link:hover {
 }
 #buttonText {
   color: whitesmoke
+}
+.armor{
+  background-color: lightsalmon;
+}
+.weapon{
+  background-color:lightcyan;
+}
+.trinket{
+  background-color:lightseagreen;
 }
 </style>
