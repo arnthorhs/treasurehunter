@@ -10,14 +10,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Character from './screens/Character.vue';
+import { Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    Character
-  },
-})
 export default class App extends Vue {}
 </script>
 

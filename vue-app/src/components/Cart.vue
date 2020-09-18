@@ -9,7 +9,7 @@
           <p>{{eq.name}}, {{eq.value}} coins</p>
         </div>
         <p><b>Total cost: {{cartTotal}} coins</b></p>
-        <button id="button"><p id="buttonText">Check out</p></button>
+        <button id="button" v-on:click="handleSubmit()"><p id="buttonText">Check out</p></button>
       </div>
 
       <div id="cartProps">
@@ -44,6 +44,9 @@ export default  class Shop extends Vue{
     });
     this.plusHP = sumHP;
     this.plusLuck = sumLuck;
+  }
+  handleSubmit(){
+    this.$emit("checkout")
   }
 }
 </script>

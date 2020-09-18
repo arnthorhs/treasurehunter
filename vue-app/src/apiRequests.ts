@@ -14,6 +14,9 @@ interface CharacterModel {
     wealth: number;
     equipment: Equipment[];
 }
+interface PurchaseResponse {
+    equipmentId: number;
+}
 
 async function getCharacter(): Promise<CharacterModel> {
     const url = 'http://localhost:5000/character';
@@ -27,4 +30,10 @@ async function getShop(): Promise<Equipment[]> {
     console.log(resp);
     return resp.data;
 }
-export { CharacterModel, Equipment, getCharacter, getShop}
+async function purchaseRequest(equipmentId: number): Promise<PurchaseResponse> {
+    const url = 'http://localhost:5000/purchases';
+    const resp = await axios.post(url,{equipmentId:equipmentId});
+    console.log(resp);
+    return resp.data;
+}
+export { CharacterModel, Equipment, getCharacter, getShop, purchaseRequest, PurchaseResponse}

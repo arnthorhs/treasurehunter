@@ -1,15 +1,16 @@
 <template>
   <div>
     <h1>Shop</h1>
+    <p>Coins left to spend: {{wealthLeft}}</p>
     <div id="equipmentList">
       <EquipmentItem id="item" v-for="(eq) in equipment" :key="eq.id" :equipment='eq' @addToCart='addToCart($event)' />
     </div>
-    <Cart :cart='cart' :cartTotal='cartTotal' :character='character'/>
+    <Cart :cart='cart' :cartTotal='cartTotal' :character='character' @checkout='checkout($event)'/>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue , Prop, Watch} from 'vue-property-decorator';
-import { Equipment, getShop, CharacterModel, getCharacter } from '../apiRequests';
+import { Equipment, getShop, CharacterModel, getCharacter, purchaseRequest, PurchaseResponse } from '../apiRequests';
 import EquipmentItem from '../components/EquipmentItem.vue';
 import Cart from '../components/Cart.vue';
 
@@ -33,12 +34,23 @@ export default class Shop extends Vue {
     }
   }
   async mounted() {
+    await this.callAPI().then(() => this.updateWealthLeft());
+  }
+  async callAPI(){
     this.equipment = await getShop();
     this.character = await getCharacter();
   }
+  checkout() {
+    this.cart.forEach(equipment => {
+      const resp = this.purchaseSubmit(equipment.id)
+    });
+    this.cart = [];
+  }
+  async purchaseSubmit(equipmentId: number) {
+    await purchaseRequest(equipmentId).then((res: PurchaseResponse) => this.callAPI())
+  }
   addToCart(equipmentToCart: Equipment){
     this.updateWealthLeft()
-    console.log(this.wealthLeft)
     if(this.checkIfAlreadyInCart(equipmentToCart)) {
       alert("you have already bought this item")
     }
@@ -47,27 +59,32 @@ export default class Shop extends Vue {
     }
     
     else {
-      alert("Sorry you cant afford this")
+      alert("Sorry you can't afford this")
     }
   }
   checkIfAlreadyInCart(equipmentToCart: Equipment){
     const found = this.cart.some(e => e.id==equipmentToCart.id);
-    console.log("found: ", found)
     return found;
   }
+  @Watch('equipment')
+  onEquipmentCanged() {
+    console.log("equipmentchanged!!    ",this.equipment.length)
+  }
   @Watch('cart')
-  onCarthanged() {
+  onCartChanged() {
     let sum = 0;
     this.cart.forEach(equipment => {
       sum += equipment.value
     });
     this.cartTotal = sum;
     this.checkCanAffordCart();
-    this.updateWealthLeft();
+    if(this.cart.length!=0){
+      this.updateWealthLeft();
+    }
+    
   }
   updateWealthLeft(){
     this.wealthLeft = this.character.wealth-this.cartTotal;
-    console.log(this.wealthLeft)
   }
   checkCanAffordCart(){
     this.canAffordCart = this.cartTotal < this.character.wealth;
