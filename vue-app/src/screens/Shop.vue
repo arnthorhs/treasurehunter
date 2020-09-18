@@ -10,6 +10,7 @@
   <div v-else>
     <h1>Sorry something went wrong</h1>
   </div>
+  
 </template>
 <script lang="ts">
 import { Component, Vue , Prop, Watch} from 'vue-property-decorator';
@@ -50,7 +51,10 @@ export default class Shop extends Vue {
     this.cart = [];
   }
   async purchaseSubmit(equipmentId: number) {
-    await purchaseRequest(equipmentId).then((res: PurchaseResponse) => this.callAPI())
+    await purchaseRequest(equipmentId).then(() => 
+      this.callAPI()
+    ).catch(() => 
+      alert("Sorry something went wrong buying the equipment, please try again later"))
   }
   addToCart(equipmentToCart: Equipment){
     this.updateWealthLeft()

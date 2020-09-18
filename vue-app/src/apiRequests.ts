@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 interface Equipment{
     id: number;
     name: string; 
@@ -30,10 +30,10 @@ async function getShop(): Promise<Equipment[]> {
     console.log(resp);
     return resp.data;
 }
-async function purchaseRequest(equipmentId: number): Promise<PurchaseResponse> {
+async function purchaseRequest(equipmentId: number): Promise<AxiosResponse | void>{
     const url = 'http://localhost:5000/purchases';
-    const resp = await axios.post(url,{equipmentId:equipmentId});
+    const resp = await axios.post(url,{equipmentId:equipmentId}).catch((e)=>console.log(e));
     console.log(resp);
-    return resp.data;
+    return resp;
 }
 export { CharacterModel, Equipment, getCharacter, getShop, purchaseRequest, PurchaseResponse}
